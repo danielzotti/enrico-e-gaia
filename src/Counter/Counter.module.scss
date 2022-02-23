@@ -1,8 +1,30 @@
 .container {
-  border: 1px solid black;
+  position: relative;
   padding: 10px;
+  text-align: center;
+  transition: opacity 0.5s ease-in-out;
+
+  //&:hover {
+  //  opacity: 0.05;
+  //}
+
 }
 
-.inner {
-  font-size: 2vw;
+.title {
+  padding: 20px;
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: clamp(30px, 5.5vw, 20vw);
+  background-color: white;
+  color: black;
+  border-radius: clamp(10px, 1vw, 1vw);
+  display: inline-block;
+  flex:1;
+}
+
+.counterContainer {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  flex:1;
 }

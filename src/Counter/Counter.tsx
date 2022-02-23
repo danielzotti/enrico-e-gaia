@@ -1,10 +1,14 @@
-import { CounterItem } from './CounterItem';
+import { CounterItem } from './CounterItem/CounterItem';
 import { DateTime, Duration, DurationUnit } from 'luxon';
 import { useEffect, useState } from 'react';
 import { DurationLikeObject } from 'luxon/src/duration';
 
+import style from './Counter.module.scss';
+
+
 export interface CounterProps {
   targetDate: Date;
+  showDate?: boolean;
 }
 
 export type Countdown = DurationLikeObject
@@ -28,7 +32,7 @@ const emptyCountdown: Countdown = {
   milliseconds: 0
 };
 
-export const Counter = ({ targetDate }: CounterProps): JSX.Element => {
+export const Counter = ({ targetDate, showDate = true }: CounterProps): JSX.Element => {
 
   const [targetDateTime] = useState<DateTime>(DateTime.fromJSDate(targetDate));
   const [countdown, setCountdown] = useState<Countdown>(emptyCountdown);
@@ -52,12 +56,13 @@ export const Counter = ({ targetDate }: CounterProps): JSX.Element => {
   }, [targetDateTime]);
 
   return (
-    <>
-      <h1>Target date { targetDateTime.toFormat('dd/MM/yyyy hh:mm:ss') }</h1>
-      <hr/>
-      { countdownItemsOrder.map(i =>
-        <CounterItem key={ i } value={ countdown[i] } label={ i }/>
-      ) }
-    </>
+    <div className={style.container}>
+      { showDate && <h1 className={style.title}>{ targetDateTime.toFormat('dd/MM/yyyy hh:mm') }</h1> }
+      <div className={ style.counterContainer }>
+        { countdownItemsOrder.map(i =>
+          <CounterItem key={ i } value={ countdown[i] } label={ i }/>
+        ) }
+      </div>
+    </div>
   );
 };

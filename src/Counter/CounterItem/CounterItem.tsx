@@ -1,4 +1,4 @@
-import style from './Counter.module.scss';
+import style from './CounterItem.module.scss';
 
 export interface CounterItemProps {
   value: number | undefined;
@@ -9,7 +9,7 @@ export const CounterItem = ({ value = 0, label }: CounterItemProps): JSX.Element
   return (
     <div className={ style.container }>
       <div className={ style.label }>{ label }</div>
-      <div className={ style.inner }>{ value }</div>
+      <div className={ style.inner }>{ Math.abs(value) }</div>
     </div>
   );
 };
