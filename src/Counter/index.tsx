@@ -3,7 +3,7 @@ import { DateTime, Duration, DurationUnit } from 'luxon';
 import { useEffect, useState } from 'react';
 import { DurationLikeObject } from 'luxon/src/duration';
 
-import style from './Counter.module.scss';
+import style from './index.module.scss';
 
 
 export interface CounterProps {
@@ -18,6 +18,17 @@ export type Countdown = DurationLikeObject
 
 const countdownItemsOrder: Array<DurationUnit> = ['years', 'months', 'days', 'hours', 'minutes', 'seconds'];
 const countdownShift: Array<DurationUnit> = ['years', 'months', 'days', 'hours', 'minutes', 'seconds', 'milliseconds'];
+// const countdownLabels: Record<keyof Omit<Countdown, 'isDayPassed'>, string> = {
+//   years: 'anni',
+//   quarters: 'quarti',
+//   months: 'mesi',
+//   days: 'giorni',
+//   weeks: 'settimane',
+//   hours: 'ore',
+//   minutes: 'minuti',
+//   seconds: 'secondi',
+//   milliseconds: 'millisecondi'
+// };
 
 const emptyCountdown: Countdown = {
   isDayPassed: true,
@@ -56,8 +67,8 @@ export const Counter = ({ targetDate, showDate = true }: CounterProps): JSX.Elem
   }, [targetDateTime]);
 
   return (
-    <div className={style.container}>
-      { showDate && <h1 className={style.title}>{ targetDateTime.toFormat('dd/MM/yyyy hh:mm') }</h1> }
+    <div className={ style.container }>
+      { showDate && <h1 className={ style.title }>{ targetDateTime.toFormat('dd/MM/yyyy hh:mm') }</h1> }
       <div className={ style.counterContainer }>
         { countdownItemsOrder.map(i =>
           <CounterItem key={ i } value={ countdown[i] } label={ i }/>

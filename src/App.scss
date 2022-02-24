@@ -12,6 +12,8 @@
 
   background-image: url('../public/images/gaia-enrico-vertical.jpg');
   @media(orientation: landscape) {
+    justify-content: end;
+    background-position: top;
     background-image: url('../public/images/gaia-enrico-horizontal.jpg');
   }
 }
