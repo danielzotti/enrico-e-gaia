@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "./static/css/main.61ceb418.css",
+    "main.js": "./static/js/main.e53b2ea9.js",
+    "static/js/787.9cfb2782.chunk.js": "./static/js/787.9cfb2782.chunk.js",
+    "static/media/gaia-audrey.png": "./static/media/gaia-audrey.79c76dc8766226861f4c.png",
+    "static/media/rings.jpg": "./static/media/rings.55c537504b61b6834363.jpg",
+    "static/media/enrico-rovinafoto.png": "./static/media/enrico-rovinafoto.ab4efe2e5207942c45a9.png",
+    "index.html": "./index.html",
+    "main.61ceb418.css.map": "./static/css/main.61ceb418.css.map",
+    "main.e53b2ea9.js.map": "./static/js/main.e53b2ea9.js.map",
+    "787.9cfb2782.chunk.js.map": "./static/js/787.9cfb2782.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.61ceb418.css",
+    "static/js/main.e53b2ea9.js"
+  ]
+}

@@ -1,6 +1,6 @@
-import React, { ReactNode, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import style from './index.module.scss';
-import { BiShow, BiHide, BiHappyHeartEyes } from 'react-icons/bi';
+import { BiHappyHeartEyes } from 'react-icons/bi';
 
 export interface PanicButtonProps {
   isPanicMode?: boolean;
