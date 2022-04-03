@@ -27,7 +27,9 @@ export const Gaia = (props: GaiaProps): JSX.Element => {
     if(!imgRef.current) {
       return;
     }
-    setIsVisible(true);
+    setTimeout(() => {
+      setIsVisible(true);
+    }, 2000);
   }, []);
 
 
@@ -37,7 +39,6 @@ export const Gaia = (props: GaiaProps): JSX.Element => {
     }
     imgRef.current.style.bottom = getBottomPosition();
   }, [isVisible, getBottomPosition, windowWidth, windowHeight]);
-
 
   const onclick = () => {
     if(!imgRef.current) {

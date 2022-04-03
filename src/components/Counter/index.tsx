@@ -8,7 +8,7 @@ import style from './index.module.scss';
 export interface CounterProps {
   targetDate: Date | undefined;
   showDate?: boolean;
-  variant: 'small' | 'big';
+  variant?: 'small' | 'big';
   isVisible?: boolean;
 }
 

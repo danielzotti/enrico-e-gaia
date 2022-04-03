@@ -1,5 +1,7 @@
-$toolbar__btn-size: 80px;
+$toolbar__btn-size: 120px;
 $toolbar__btn__icon-size: $toolbar__btn-size * 0.6;
+$toolbar__btn__font-size: $toolbar__btn-size * 0.25;
+
 .toolbar {
   position: fixed;
   display: flex;
@@ -11,7 +13,12 @@ $toolbar__btn__icon-size: $toolbar__btn-size * 0.6;
 }
 
 .toolbar__btn {
-  background: white;
+  background: red;
+  color: white;
+  font-size: $toolbar__btn__font-size;
+  font-weight: bold;
+  text-transform: uppercase;
+
   border: 3px solid black;
   border-radius: 50%;
   width: $toolbar__btn-size;
@@ -24,3 +31,33 @@ $toolbar__btn__icon-size: $toolbar__btn-size * 0.6;
     height: $toolbar__btn__icon-size;
   }
 }
+
+:global {
+  .bounce {
+    animation-name: bounce;
+    animation-timing-function: ease;
+    animation-iteration-count: 5;
+    animation-duration: 0.5s;
+    animation-delay: 7s;
+  }
+}
+
+@keyframes:global(bounce) {
+  0% {
+    transform: scale(1, 1) translateY(0);
+  }
+  10% {
+    transform: scale(1.1, .9) translateY(0);
+  }
+  30% {
+    transform: scale(.9, 1.1) translateY(-100px);
+  }
+  50% {
+    transform: scale(1, 1) translateY(0);
+  }
+  100% {
+    transform: scale(1, 1) translateY(0);
+  }
+}
+
+
