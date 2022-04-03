@@ -1,5 +1,6 @@
-import React, { ReactChildren, ReactNode } from 'react';
+import React, { ReactNode, useEffect, useState } from 'react';
 import style from './index.module.scss';
+import { BiShow, BiHide } from 'react-icons/bi';
 
 export interface ToolbarProps {
   isCounterVisible?: boolean;
@@ -21,21 +22,23 @@ export const ToolbarButton = ({ children, onClick }: ButtonToolbarProps) =>
 
 export const Toolbar = ({
                           isCounterVisible,
-                          isMobileMode,
                           onCounterVisibleChange,
-                          onToggleMobileMode
                         }: ToolbarProps): JSX.Element => {
 
+  const [isVisible, setIsVisible] = useState(false);
+
   const onCounterClick = () => onCounterVisibleChange(!isCounterVisible);
-  const onMobileModeClick = () => onToggleMobileMode(!isMobileMode);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsVisible(true);
+    }, 4000);
+  }, [setIsVisible]);
 
   return (
-    <div className={ style.toolbar }>
+    <div className={ style.toolbar } style={ { opacity: isVisible ? 1 : 0 } }>
       <ToolbarButton onClick={ onCounterClick }>
-        { isCounterVisible ? 'hide counter' : 'show counter' }
-      </ToolbarButton>
-      <ToolbarButton onClick={ onMobileModeClick }>
-        { isMobileMode ? 'show desktop mode' : 'show mobile mode' }
+        { isCounterVisible ? <BiHide/> : <BiShow/> }
       </ToolbarButton>
     </div>
   );

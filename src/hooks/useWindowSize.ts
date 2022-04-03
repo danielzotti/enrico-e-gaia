@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 
 export interface WindowInfo {
-  width?: number;
-  height?: number;
+  width: number;
+  height: number;
   isHorizontal: boolean;
   isMobile: boolean;
 }

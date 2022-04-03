@@ -9,6 +9,7 @@ export interface CounterProps {
   targetDate: Date | undefined;
   showDate?: boolean;
   variant: 'small' | 'big';
+  isVisible?: boolean;
 }
 
 export type Countdown = DurationLikeObject
@@ -54,7 +55,12 @@ const emptyCountdown: Countdown = {
 
 const getDateTimeFromDate = (date: Date | undefined) => DateTime.fromJSDate(date || new Date()).setLocale('it');
 
-export const Counter = ({ targetDate, showDate = true, variant = 'big' }: CounterProps): JSX.Element => {
+export const Counter = ({
+                          targetDate,
+                          showDate = true,
+                          variant = 'big',
+                          isVisible = false
+                        }: CounterProps): JSX.Element => {
 
   const [targetDateTime, setTargetDateTime] = useState<DateTime>(getDateTimeFromDate(targetDate));
   const [countdown, setCountdown] = useState<Countdown>(emptyCountdown);
@@ -77,7 +83,7 @@ export const Counter = ({ targetDate, showDate = true, variant = 'big' }: Counte
         countdownItemsWithoutLeadingZero.push(i);
       }
 
-      if(!hasFoundFirstNonZeroValue && itemValue === 0) {
+      if(!hasFoundFirstNonZeroValue && itemValue !== 0) {
         hasFoundFirstNonZeroValue = true;
       }
 
@@ -101,7 +107,7 @@ export const Counter = ({ targetDate, showDate = true, variant = 'big' }: Counte
   }, [targetDate]);
 
   return (
-    <div className={ style.container }>
+    <div className={ style.container } style={ { opacity: isVisible ? 1 : 0 } }>
       { showDate && <h1 className={ style.title }>{ targetDateTime.toFormat('dd MMMM yyyy HH:mm') }</h1> }
       <br/>
       <h6 className={ style.subtitle }>

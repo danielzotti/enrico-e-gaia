@@ -6,25 +6,5 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-
   background-color: #333;
-
-  &:not(.is-mobile) {
-    background-size: cover;
-    background-position: center;
-
-    background-image: url('../public/images/gaia-enrico-vertical.jpg');
-    @media(orientation: landscape) {
-      justify-content: end;
-      background-position: top;
-      background-image: url('../public/images/gaia-enrico-horizontal.jpg');
-    }
-  }
-
 }
-
-/*.image {
-  position: relative;
-  display: block;
-  flex-grow: 1;
-}*/

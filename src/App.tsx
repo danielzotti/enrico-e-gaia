@@ -3,19 +3,18 @@ import './App.scss';
 import { Counter } from './components/Counter';
 import { Toolbar } from './components/Toolbar';
 import { BackgroundImage } from './components/BackgroundImage';
-import horizontalImage from './assets/gaia-enrico-horizontal.jpg';
-import verticalImage from './assets/gaia-enrico-vertical.jpg';
+import ringsImageSrc from './assets/rings.jpg';
 import { useWindowSize } from './hooks/useWindowSize';
 import { useQueryParams } from './hooks/useQueryParams';
+import { Enrico } from './components/Enrico';
+import { Gaia } from './components/Gaia';
 
 function App() {
-  const [isCounterVisible, setIsCounterVisible] = useState<boolean>(true);
+  const [isCounterVisible, setIsCounterVisible] = useState<boolean>(false);
   const [isMobileMode, setIsMobileMode] = useState<boolean | undefined>(undefined);
-  const { isHorizontal, isMobile } = useWindowSize();
+  const { isMobile } = useWindowSize();
   const { date } = useQueryParams();
   const [targetDate, setTargetDate] = useState<Date | undefined>();
-
-  console.warn({ isMobileMode });
 
   useEffect(() => {
     try {
@@ -24,7 +23,7 @@ function App() {
         setTargetDate(newDate);
       }
     } catch(e) {
-      console.log(e);
+      setTargetDate(new Date());
     }
   }, [date]);
 
@@ -33,6 +32,13 @@ function App() {
       setIsMobileMode(isMobile);
     }
   }, [isMobile]);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsCounterVisible(true);
+    }, 2000);
+  }, [setIsCounterVisible]);
+
 
   const onCounterVisibleChange = (isVisible: boolean) => {
     setIsCounterVisible(isVisible);
@@ -43,20 +49,24 @@ function App() {
   };
 
   return (
-    <div className={ `App ${ isMobileMode ? 'is-mobile' : '' }` }>
-      { !isMobileMode && <BackgroundImage src={ isHorizontal ? horizontalImage : verticalImage } blur="0px"/> }
-      <Toolbar
-        isCounterVisible={ isCounterVisible }
-        isMobileMode={ isMobileMode }
-        onCounterVisibleChange={ onCounterVisibleChange }
-        onToggleMobileMode={ onToggleMobileMode }
-      />
-      {/*<img src={ isHorizontal ? horizontalImage : verticalImage }/>*/ }
-      { isCounterVisible &&
-        <Counter variant={ isMobileMode ? 'small' : 'big' }
-                 targetDate={ targetDate } // ?date=2022-09-17T10:00
-        /> }
-    </div>
+    <>
+      <div className={ `App ${ isMobileMode ? 'is-mobile' : '' }` }>
+        <BackgroundImage src={ ringsImageSrc } blur="0px"/>
+        <Toolbar
+          isCounterVisible={ isCounterVisible }
+          isMobileMode={ isMobileMode }
+          onCounterVisibleChange={ onCounterVisibleChange }
+          onToggleMobileMode={ onToggleMobileMode }
+        />
+        <Counter
+          isVisible={ isCounterVisible }
+          variant={ isMobileMode ? 'small' : 'big' }
+          targetDate={ targetDate } // ?date=2022-09-17T10:00
+        />
+      </div>
+      <Enrico/>
+      <Gaia/>
+    </>
   );
 }
 

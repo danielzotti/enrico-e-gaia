@@ -1,0 +1,16 @@
+.image {
+  display: inline-block;
+  position: fixed;
+  left: 1vw;
+  bottom: -100vh;
+  transition: bottom 0.35s ease-in-out;
+  cursor: pointer;
+
+  @media(orientation: landscape) {
+    height: 80vh;
+  }
+  @media(orientation: portrait) {
+    max-width: 50vw;
+    max-height: 80vh;
+  }
+}

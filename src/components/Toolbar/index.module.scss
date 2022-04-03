@@ -1,7 +1,26 @@
+$toolbar__btn-size: 80px;
+$toolbar__btn__icon-size: $toolbar__btn-size * 0.6;
 .toolbar {
   position: fixed;
-  display: block;
-  top: 0;
-  right: 0;
+  display: flex;
+  bottom: 15px;
+  right: 15px;
   z-index: 1;
+  gap: 10px;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.toolbar__btn {
+  background: white;
+  border: 3px solid black;
+  border-radius: 50%;
+  width: $toolbar__btn-size;
+  height: $toolbar__btn-size;
+  cursor: pointer;
+  box-shadow: 1vw 1vw 3vw 0.1vw rgba(0, 0, 0, 0.4);
+
+  > svg {
+    width: $toolbar__btn__icon-size;
+    height: $toolbar__btn__icon-size;
+  }
 }
