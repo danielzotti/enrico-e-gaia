@@ -17,12 +17,14 @@
   border-radius: clamp(10px, 1vw, 1vw);
   flex: 1;
   display: inline-block;
-
+  line-height: 1;
 }
 
 .subtitle {
-  @extend .title;
-  font-size: clamp(15px, 3.5vw, 15vw);
+  //@extend .title;
+  font-size: clamp(12px, 3vw, 12vw);
+  text-transform: uppercase;
+  line-height: 1;
 }
 
 .counterContainer {

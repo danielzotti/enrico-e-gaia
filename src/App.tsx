@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './App.scss';
 import { Counter } from './components/Counter';
-import { Toolbar } from './components/Toolbar';
+import { PanicButton } from './components/PanicButton';
 import { BackgroundImage } from './components/BackgroundImage';
 import ringsImageSrc from './assets/rings.jpg';
 import { useQueryParams } from './hooks/useQueryParams';
@@ -9,7 +9,9 @@ import { Enrico } from './components/Enrico';
 import { Gaia } from './components/Gaia';
 
 function App() {
-  const [isCounterVisible, setIsCounterVisible] = useState<boolean>(false);
+  const [isPanicMode, setIsPanicMode] = useState<boolean>(false);
+  const [showCounter, setShowCounter] = useState<boolean>(false);
+  const [showPanicBUtton, setShowPanicBUtton] = useState<boolean>(false);
   const { date } = useQueryParams();
   const [targetDate, setTargetDate] = useState<Date | undefined>();
 
@@ -26,13 +28,17 @@ function App() {
 
   useEffect(() => {
     setTimeout(() => {
-      setIsCounterVisible(true);
+      setShowCounter(true);
+    }, 2000);
+
+    setTimeout(() => {
+      setShowPanicBUtton(true);
     }, 3500);
-  }, [setIsCounterVisible]);
+  }, [setShowPanicBUtton]);
 
 
-  const onCounterVisibleChange = (isVisible: boolean) => {
-    setIsCounterVisible(isVisible);
+  const onPanicModeChange = (isPanicMode: boolean) => {
+    setIsPanicMode(isPanicMode);
   };
 
 
@@ -40,17 +46,17 @@ function App() {
     <>
       <div className="App">
         <BackgroundImage src={ ringsImageSrc } blur="0px"/>
-        <Toolbar
-          isCounterVisible={ isCounterVisible }
-          onCounterVisibleChange={ onCounterVisibleChange }
-        />
+        { showPanicBUtton && <PanicButton
+          isPanicMode={ isPanicMode }
+          onPanicModeChange={ onPanicModeChange }
+        /> }
         <Counter
-          isVisible={ isCounterVisible }
+          isVisible={ !isPanicMode && showCounter }
           targetDate={ targetDate } // ?date=2022-09-17T10:00
         />
       </div>
-      <Enrico/>
-      <Gaia/>
+      <Enrico show={ isPanicMode }/>
+      <Gaia show={ isPanicMode }/>
     </>
   );
 }

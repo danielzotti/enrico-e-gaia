@@ -108,11 +108,15 @@ export const Counter = ({
 
   return (
     <div className={ style.container } style={ { opacity: isVisible ? 1 : 0 } }>
-      { showDate && <h1 className={ style.title }>{ targetDateTime.toFormat('dd MMMM yyyy HH:mm') }</h1> }
+      { showDate && <h1 className={ style.title }>
+        { targetDateTime.toFormat('dd MMMM yyyy HH:mm') }
+        <br/>
+        <small className={ style.subtitle }>{ getCountdownValue(targetDateTime).isDayPassed ? 'Sono passati' : 'Mancano' }</small>
+      </h1> }
       <br/>
-      <h6 className={ style.subtitle }>
+      {/*<h6 className={ style.subtitle }>
         { getCountdownValue(targetDateTime).isDayPassed ? 'Sono passati' : 'Mancano' }
-      </h6>
+      </h6>*/ }
       <div className={ style.counterContainer }>
         { getCountdownItemsWithoutLeadingZero().map(i =>
           <CounterItem key={ i } value={ countdown[i] } label={ countdownLabels[i] } variant={ variant }/>

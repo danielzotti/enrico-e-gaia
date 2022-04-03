@@ -4,15 +4,14 @@ import style from './index.module.scss';
 import { useWindowSize } from '../../hooks/useWindowSize';
 
 export interface GaiaProps {
-  top?: string;
-  left?: string;
+  show?: boolean;
 }
 
-export const Gaia = (props: GaiaProps): JSX.Element => {
+export const Gaia = ({ show = false }: GaiaProps): JSX.Element => {
 
   const { width: windowWidth, height: windowHeight } = useWindowSize();
 
-  const [isVisible, setIsVisible] = useState<boolean>(false);
+  const [isVisible, setIsVisible] = useState<boolean>(show);
 
   const imgRef = useRef<HTMLImageElement>(null);
 
@@ -27,10 +26,8 @@ export const Gaia = (props: GaiaProps): JSX.Element => {
     if(!imgRef.current) {
       return;
     }
-    setTimeout(() => {
-      setIsVisible(true);
-    }, 2000);
-  }, []);
+    setIsVisible(show);
+  }, [show]);
 
 
   useEffect(() => {

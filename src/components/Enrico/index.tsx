@@ -4,15 +4,14 @@ import style from './index.module.scss';
 import { useWindowSize } from '../../hooks/useWindowSize';
 
 export interface EnricoProps {
-  top?: string;
-  left?: string;
+  show?: boolean;
 }
 
-export const Enrico = (props: EnricoProps): JSX.Element => {
+export const Enrico = ({ show = false }: EnricoProps): JSX.Element => {
 
   const { width: windowWidth, height: windowHeight } = useWindowSize();
 
-  const [isVisible, setIsVisible] = useState<boolean>(false);
+  const [isVisible, setIsVisible] = useState<boolean>(show);
 
   const imgRef = useRef<HTMLImageElement>(null);
 
@@ -27,8 +26,8 @@ export const Enrico = (props: EnricoProps): JSX.Element => {
     if(!imgRef.current) {
       return;
     }
-    setIsVisible(true);
-  }, []);
+    setIsVisible(show);
+  }, [show]);
 
 
   useEffect(() => {

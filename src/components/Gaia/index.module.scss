@@ -5,6 +5,7 @@
   bottom: -100vh;
   transition: bottom 0.35s ease-in-out;
   cursor: pointer;
+  aspect-ratio: 508/1080;
 
   @media(orientation: landscape) {
     height: 80vh;
