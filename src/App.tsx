@@ -22,7 +22,7 @@ function App() {
         setTargetDate(newDate);
       }
     } catch(e) {
-      setTargetDate(new Date('2022-09-17T10:00'));
+      setTargetDate(new Date('2022-09-17T10:30'));
     }
   }, [date]);
 
